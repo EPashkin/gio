@@ -22,6 +22,19 @@ glib_wrapper! {
 }
 
 impl File {
+
+
+    pub fn has_parent<'a, 'b:'a, P: IsA<File> + 'b, Q: Into<Option<&'a P>>>(&self, parent: Q) -> bool {
+        unsafe {
+            let parent1/*:Option<&'b P>*/ = parent.into();
+            //let parent2 = parent1.to_glib_none();
+            //from_glib(ffi::g_file_has_parent(self.to_glib_none().0, parent2.0))
+            let v = ffi::g_file_has_parent(self.to_glib_none().0, parent1.to_glib_none().0);
+            from_glib(v)
+            //true
+        }
+    }
+
     pub fn new_for_commandline_arg(arg: &str) -> File {
         unsafe {
             from_glib_full(ffi::g_file_new_for_commandline_arg(arg.to_glib_none().0))
@@ -134,8 +147,6 @@ pub trait FileExt {
     fn get_uri(&self) -> Option<String>;
 
     fn get_uri_scheme(&self) -> Option<String>;
-
-    fn has_parent<'a, P: IsA<File> + 'a, Q: Into<Option<&'a P>>>(&self, parent: Q) -> bool;
 
     fn has_prefix<P: IsA<File>>(&self, prefix: &P) -> bool;
 
@@ -482,14 +493,6 @@ impl<O: IsA<File>> FileExt for O {
     fn get_uri_scheme(&self) -> Option<String> {
         unsafe {
             from_glib_full(ffi::g_file_get_uri_scheme(self.to_glib_none().0))
-        }
-    }
-
-    fn has_parent<'a, P: IsA<File> + 'a, Q: Into<Option<&'a P>>>(&self, parent: Q) -> bool {
-        let parent = parent.into();
-        let parent = parent.to_glib_none();
-        unsafe {
-            from_glib(ffi::g_file_has_parent(self.to_glib_none().0, parent.0))
         }
     }
 
