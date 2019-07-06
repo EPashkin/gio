@@ -25,6 +25,18 @@ generate = [
     "Gio.DataOutputStream",
     "Gio.DataStreamByteOrder",
     "Gio.DataStreamNewlineType",
+    "Gio.DBusAuthObserver",
+    "Gio.DBusCallFlags",
+    "Gio.DBusCapabilityFlags",
+    "Gio.DBusConnection",
+    "Gio.DBusConnectionFlags",
+    "Gio.DBusInterfaceInfo",
+    "Gio.DBusMessageByteOrder",
+    "Gio.DBusMessageFlags",
+    "Gio.DBusMessageHeaderField",
+    "Gio.DBusSendMessageFlags",
+    "Gio.DBusSignalFlags",
+    "Gio.DBusMessageType",
     "Gio.Drive",
     "Gio.DriveStartFlags",
     "Gio.DriveStartStopType",
@@ -138,6 +150,7 @@ ignore = [
 
 manual = [
     "GLib.Bytes",
+    "GLib.Closure",
     "GLib.DateTime",
     "GLib.Error",
     "GLib.IOCondition",
@@ -149,6 +162,7 @@ manual = [
     "GLib.Quark",
     "GLib.SeekType",
     "GLib.Source",
+    "GLib.String",
     "GLib.TimeVal",
     "GLib.Variant",
     "GLib.VariantType",
@@ -312,6 +326,14 @@ status = "generate"
 
     [[object.function]]
     name = "read_line_async"
+    #return vec of u8
+    ignore = true
+
+[[object]]
+name = "Gio.DBusMessage"
+status = "generate"
+    [[object.function]]
+    name = "get_header_fields"
     #return vec of u8
     ignore = true
 

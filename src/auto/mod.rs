@@ -87,6 +87,15 @@ pub use self::converter_output_stream::{
 mod credentials;
 pub use self::credentials::{Credentials, CredentialsClass};
 
+mod dbus_auth_observer;
+pub use self::dbus_auth_observer::{DBusAuthObserver, DBusAuthObserverClass};
+
+mod dbus_connection;
+pub use self::dbus_connection::{DBusConnection, DBusConnectionClass};
+
+mod dbus_message;
+pub use self::dbus_message::{DBusMessage, DBusMessageClass};
+
 mod data_input_stream;
 pub use self::data_input_stream::DataInputStreamBuilder;
 pub use self::data_input_stream::DataInputStreamExt;
@@ -465,6 +474,9 @@ pub use self::zlib_decompressor::{
     ZlibDecompressor, ZlibDecompressorClass, NONE_ZLIB_DECOMPRESSOR,
 };
 
+mod dbus_interface_info;
+pub use self::dbus_interface_info::DBusInterfaceInfo;
+
 mod file_attribute_matcher;
 pub use self::file_attribute_matcher::FileAttributeMatcher;
 
@@ -486,6 +498,9 @@ pub use self::srv_target::SrvTarget;
 mod enums;
 pub use self::enums::ConverterResult;
 pub use self::enums::CredentialsType;
+pub use self::enums::DBusMessageByteOrder;
+pub use self::enums::DBusMessageHeaderField;
+pub use self::enums::DBusMessageType;
 pub use self::enums::DataStreamByteOrder;
 pub use self::enums::DataStreamNewlineType;
 pub use self::enums::DriveStartStopType;
@@ -521,6 +536,12 @@ pub use self::flags::AppInfoCreateFlags;
 pub use self::flags::ApplicationFlags;
 pub use self::flags::AskPasswordFlags;
 pub use self::flags::ConverterFlags;
+pub use self::flags::DBusCallFlags;
+pub use self::flags::DBusCapabilityFlags;
+pub use self::flags::DBusConnectionFlags;
+pub use self::flags::DBusMessageFlags;
+pub use self::flags::DBusSendMessageFlags;
+pub use self::flags::DBusSignalFlags;
 pub use self::flags::DriveStartFlags;
 pub use self::flags::FileCopyFlags;
 pub use self::flags::FileCreateFlags;

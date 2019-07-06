@@ -27,12 +27,12 @@ use Resource;
 use ResourceLookupFlags;
 use SettingsBackend;
 
-//pub fn bus_get<P: IsA<Cancellable>, Q: FnOnce(Result</*Ignored*/DBusConnection, Error>) + Send + 'static>(bus_type: /*Ignored*/BusType, cancellable: Option<&P>, callback: Q) {
+//pub fn bus_get<P: IsA<Cancellable>, Q: FnOnce(Result<DBusConnection, Error>) + Send + 'static>(bus_type: /*Ignored*/BusType, cancellable: Option<&P>, callback: Q) {
 //    unsafe { TODO: call gio_sys:g_bus_get() }
 //}
 
 //#[cfg(feature = "futures")]
-//pub fn bus_get_future(bus_type: /*Ignored*/BusType) -> Box_<dyn future::Future<Output = Result</*Ignored*/DBusConnection, Error>> + std::marker::Unpin> {
+//pub fn bus_get_future(bus_type: /*Ignored*/BusType) -> Box_<dyn future::Future<Output = Result<DBusConnection, Error>> + std::marker::Unpin> {
 //use GioFuture;
 //use fragile::Fragile;
 
@@ -51,19 +51,19 @@ use SettingsBackend;
 //})
 //}
 
-//pub fn bus_get_sync<P: IsA<Cancellable>>(bus_type: /*Ignored*/BusType, cancellable: Option<&P>) -> Result</*Ignored*/DBusConnection, Error> {
+//pub fn bus_get_sync<P: IsA<Cancellable>>(bus_type: /*Ignored*/BusType, cancellable: Option<&P>) -> Result<DBusConnection, Error> {
 //    unsafe { TODO: call gio_sys:g_bus_get_sync() }
 //}
 
-//pub fn bus_own_name(bus_type: /*Ignored*/BusType, name: &str, flags: /*Ignored*/BusNameOwnerFlags, bus_acquired_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str), name_acquired_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str), name_lost_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> u32 {
+//pub fn bus_own_name(bus_type: /*Ignored*/BusType, name: &str, flags: /*Ignored*/BusNameOwnerFlags, bus_acquired_handler: Option<Box<dyn Fn(&DBusConnection, &str) + 'static>>, name_acquired_handler: Option<Box<dyn Fn(&DBusConnection, &str) + 'static>>, name_lost_handler: Option<Box<dyn Fn(&DBusConnection, &str) + 'static>>) -> u32 {
 //    unsafe { TODO: call gio_sys:g_bus_own_name() }
 //}
 
-//pub fn bus_own_name_on_connection(connection: /*Ignored*/&DBusConnection, name: &str, flags: /*Ignored*/BusNameOwnerFlags, name_acquired_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str), name_lost_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> u32 {
+//pub fn bus_own_name_on_connection(connection: &DBusConnection, name: &str, flags: /*Ignored*/BusNameOwnerFlags, name_acquired_handler: Option<Box<dyn Fn(&DBusConnection, &str) + 'static>>, name_lost_handler: Option<Box<dyn Fn(&DBusConnection, &str) + 'static>>) -> u32 {
 //    unsafe { TODO: call gio_sys:g_bus_own_name_on_connection() }
 //}
 
-//pub fn bus_own_name_on_connection_with_closures(connection: /*Ignored*/&DBusConnection, name: &str, flags: /*Ignored*/BusNameOwnerFlags, name_acquired_closure: /*Ignored*/Option<&glib::Closure>, name_lost_closure: /*Ignored*/Option<&glib::Closure>) -> u32 {
+//pub fn bus_own_name_on_connection_with_closures(connection: &DBusConnection, name: &str, flags: /*Ignored*/BusNameOwnerFlags, name_acquired_closure: /*Ignored*/Option<&glib::Closure>, name_lost_closure: /*Ignored*/Option<&glib::Closure>) -> u32 {
 //    unsafe { TODO: call gio_sys:g_bus_own_name_on_connection_with_closures() }
 //}
 
@@ -83,15 +83,15 @@ pub fn bus_unwatch_name(watcher_id: u32) {
     }
 }
 
-//pub fn bus_watch_name(bus_type: /*Ignored*/BusType, name: &str, flags: /*Ignored*/BusNameWatcherFlags, name_appeared_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str, &str), name_vanished_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> u32 {
+//pub fn bus_watch_name(bus_type: /*Ignored*/BusType, name: &str, flags: /*Ignored*/BusNameWatcherFlags, name_appeared_handler: Option<Box<dyn Fn(&DBusConnection, &str, &str) + 'static>>, name_vanished_handler: Option<Box<dyn Fn(&DBusConnection, &str) + 'static>>) -> u32 {
 //    unsafe { TODO: call gio_sys:g_bus_watch_name() }
 //}
 
-//pub fn bus_watch_name_on_connection(connection: /*Ignored*/&DBusConnection, name: &str, flags: /*Ignored*/BusNameWatcherFlags, name_appeared_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str, &str), name_vanished_handler: /*Unimplemented*/Fn(/*Ignored*/DBusConnection, &str), user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> u32 {
+//pub fn bus_watch_name_on_connection(connection: &DBusConnection, name: &str, flags: /*Ignored*/BusNameWatcherFlags, name_appeared_handler: Option<Box<dyn Fn(&DBusConnection, &str, &str) + 'static>>, name_vanished_handler: Option<Box<dyn Fn(&DBusConnection, &str) + 'static>>) -> u32 {
 //    unsafe { TODO: call gio_sys:g_bus_watch_name_on_connection() }
 //}
 
-//pub fn bus_watch_name_on_connection_with_closures(connection: /*Ignored*/&DBusConnection, name: &str, flags: /*Ignored*/BusNameWatcherFlags, name_appeared_closure: /*Ignored*/Option<&glib::Closure>, name_vanished_closure: /*Ignored*/Option<&glib::Closure>) -> u32 {
+//pub fn bus_watch_name_on_connection_with_closures(connection: &DBusConnection, name: &str, flags: /*Ignored*/BusNameWatcherFlags, name_appeared_closure: /*Ignored*/Option<&glib::Closure>, name_vanished_closure: /*Ignored*/Option<&glib::Closure>) -> u32 {
 //    unsafe { TODO: call gio_sys:g_bus_watch_name_on_connection_with_closures() }
 //}
 
